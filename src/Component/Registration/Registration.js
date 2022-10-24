@@ -1,22 +1,57 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  FacebookAuthProvider,
+  GithubAuthProvider,
+} from "firebase/auth";
 import app from "../../Firebase/firebase.init";
 
-const Registration = () => {
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
+const auth = getAuth(app);
 
-  const handleGoogleSignIn = (event) => {
+const Registration = () => {
+  const googleProvider = new GoogleAuthProvider();
+  const fbProvider = new FacebookAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+
+  const handleGitSignIn = (event) => {
     event.preventDefault();
 
-    signInWithPopup(auth, provider)
+    signInWithPopup(auth, githubProvider)
       .then((result) => {
         const user = result.user;
         console.log(user);
       })
       .catch((error) => {
-        console.error(error.code);
+        console.error(error);
+      });
+  };
+
+  const handleFbSignIn = (event) => {
+    event.preventDefault();
+
+    signInWithPopup(auth, fbProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleGoogleSignIn = (event) => {
+    event.preventDefault();
+
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
       });
   };
 
@@ -34,10 +69,16 @@ const Registration = () => {
                 >
                   <p className="text-green-600">Google</p>
                 </button>
-                <button className="btn btn-outline btn-info ml-2">
+                <button
+                  onClick={handleFbSignIn}
+                  className="btn btn-outline btn-info ml-2"
+                >
                   <p className="text-blue-600">Facebook</p>
                 </button>
-                <button className="btn btn-outline ml-2">
+                <button
+                  onClick={handleGitSignIn}
+                  className="btn btn-outline ml-2"
+                >
                   <p className="text-black">Github</p>
                 </button>
               </div>
