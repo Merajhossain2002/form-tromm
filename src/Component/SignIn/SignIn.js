@@ -41,17 +41,22 @@ const SignIn = () => {
                   className="input input-bordered"
                 />
                 <label className="label">
-                  <Link
-                    to={"/register"}
-                    className="label-text-alt link link-hover"
-                  >
-                    New to Form tromm? Register
+                  <Link className="label-text-alt link link-hover">
+                    Forgot Password? Click Here
                   </Link>
                 </label>
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
               </div>
+              <label className="label">
+                <Link
+                  to={"/register"}
+                  className="label-text-alt link link-hover"
+                >
+                  New to Form tromm? Register
+                </Link>
+              </label>
             </form>
           </div>
         </div>

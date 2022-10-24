@@ -16,6 +16,21 @@ const Registration = () => {
   const fbProvider = new FacebookAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
+  const handleRegister = (event) => {
+    event.preventDefault();
+
+    const form = event.target;
+    const dispalayName = event.target.name.value;
+    const dob = event.target.dob.value;
+    const gender = event.target.gender.value;
+    const number = event.target.number.value;
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+
+    console.log(dispalayName, dob, gender, number, email, password);
+    form.reset();
+  };
+
   const handleGitSignIn = (event) => {
     event.preventDefault();
 
@@ -60,7 +75,7 @@ const Registration = () => {
       <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form className="card-body">
+            <form onSubmit={handleRegister} className="card-body">
               <label>Sign Up With</label>
               <div>
                 <button
@@ -82,16 +97,60 @@ const Registration = () => {
                   <p className="text-black">Github</p>
                 </button>
               </div>
+
               <label>OR</label>
+
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Name</span>
                 </label>
                 <input
                   type="text"
+                  name="name"
                   placeholder="Your Name"
                   className="input input-bordered"
+                  required
                 />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Date of Birth</span>
+                </label>
+                <input
+                  type="date"
+                  name="dob"
+                  placeholder="Your birth date"
+                  className="input input-bordered"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Gender</span>
+                </label>
+                <div className="text-start input input-bordered p-3">
+                  <input
+                    className="ml-4"
+                    type="radio"
+                    name="gender"
+                    id="male"
+                    value="Male"
+                    required
+                  />
+                  <label className="ml-1 mr-4" htmlFor="male">
+                    Male
+                  </label>
+                  <input
+                    type="radio"
+                    name="gender"
+                    id="female"
+                    value="Female"
+                    required
+                  />
+                  <label className="ml-1" htmlFor="female">
+                    Female
+                  </label>
+                </div>
               </div>
               <div className="form-control">
                 <label className="label">
@@ -99,8 +158,22 @@ const Registration = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="email"
                   className="input input-bordered"
+                  required
+                />
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Number</span>
+                </label>
+                <input
+                  type="number"
+                  name="number"
+                  placeholder="your number"
+                  className="input input-bordered"
+                  required
                 />
               </div>
               <div className="form-control">
@@ -109,8 +182,10 @@ const Registration = () => {
                 </label>
                 <input
                   type="password"
+                  name="password"
                   placeholder="password"
                   className="input input-bordered"
+                  required
                 />
                 <label className="label">
                   <Link
